@@ -45,7 +45,7 @@ On client connect, the user will be prompted to either log in or create an accou
 - **Eliza**: 
   - Create structs and store/retrieve user data from files. Implement the balance function.
   - Implement the login/create account functionality.
-  - Impelemtn the play wheel command.
+  - Implement the play wheel command.
 
 ## Project Timeline (due 1/21)
 - **1/13**: Start with previous assignment (pipes and handshake)
