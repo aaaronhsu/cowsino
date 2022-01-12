@@ -5,6 +5,8 @@ Aaron Hsu & Eliza Knapp (Period 5)
 ## Description of Project
 Cowsino is a casino where users can log into a server to gamble *currency* by playing simple text-based chance games. User data (username, password, balance) is stored in a file system and multiple users can interact with the cowsino at a time.
 
+The *currency* is not yet named.
+
 
 ## UI
 
