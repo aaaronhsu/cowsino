@@ -18,7 +18,7 @@ On client connect, the user will be prompted to either log in or create an accou
 - `create <username> <password>`: Creates a new user with the given username and password.
 - `balance`: Displays the current balance of the user.
 - `play flip <amount> <heads/tails>`: Plays a coinflip game, betting the given amount of *currency* on the given side of the coin.
-- `play dice <amount> <number of dice> <sum guess>`: Plays a dice game, betting the given amount of *currency* on the sum of the dice. The closer the user is to the sum guess, the higher the payout.
+- `play dice <amount> <number of dice> <sum guess>`: Plays a dice game, betting the given amount of *currency* on the sum of the dice. The closer the user's guess is to actual sum, the higher the payout.
 - `exit`: Exits the program.
 - `help`: Displays a list of commands that can be run.
 
