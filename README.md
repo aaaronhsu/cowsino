@@ -1,12 +1,10 @@
 # cowsino
 Aaron Hsu & Eliza Knapp (Period 5)
 
----
 
 ## Description of Project
 Cowsino is a casino where users can log into a server to gamble *currency* by playing simple text-based chance games. User data (username, password, balance) is stored in a file system and multiple users can interact with the cowsino at a time.
 
----
 
 ## UI
 
@@ -21,18 +19,17 @@ On client connect, the user will be prompted to either log in or create an accou
 - `exit`: Exits the program.
 - `help`: Displays a list of commands that can be run.
 
----
 
 ## Technical Design
 
 ### Topics
 - **Allocating memory**: To create structs that store user data and store the game data.
-- **Working with files** User data will be stored in files as structs.
-- **Finding information about files** User data wil be fetched from files on user connect/disconnect.
-- **Processes** Forking processes to have multiple clients connect at a time.
-- **Semaphores** Ensure that a client isn't logged into the server through multiple terminals at the same time.
-- **Pipes** To communicate between the server and the client.
-- **Sockets** If we decide to implement multiplayer games.
+- **Working with files**: User data will be stored in files as structs.
+- **Finding information about files**: User data wil be fetched from files on user connect/disconnect.
+- **Processes**: Forking processes to have multiple clients connect at a time.
+- **Semaphores**: Ensure that a client isn't logged into the server through multiple terminals at the same time.
+- **Pipes**: To communicate between the server and the client.
+- **Sockets**: If we decide to implement multiplayer games.
 
 ### Data Structures/Methods
 - User struct: (char * username, char * password, int balance)
@@ -43,11 +40,8 @@ On client connect, the user will be prompted to either log in or create an accou
 - **Eliza**: Create structs and store/retrieve user data from files.
 
 ## Project Timeline (due 1/21)
-- 1/13: Start with previous assignment.
-- 1/14: Parse user input (serverside) and run (empty) functions with parameters. Store user data locally within the program.
-- 1/17: Implement user struct and login system (by reading/writing to files). Create a coinflip game.
-- 1/20: MVP (current description of the project)
-
-- 1/21: Semaphores to make sure that a client isn't logged into the server through multiple terminals at the same time.
-
-We can add more complex games to the server if we have extra time.
+- **1/13**: Start with previous assignment.
+- **1/14**: Parse user input (serverside) and run (empty) functions with parameters. Store user data locally within the program.
+- **1/17**: Implement user struct and login system (by reading/writing to files). Create a coinflip game.
+- **1/18**: MVP (current description of the project)
+- **1/20**: Semaphores to make sure that a client isn't logged into the server through multiple terminals at the same time. More games.
