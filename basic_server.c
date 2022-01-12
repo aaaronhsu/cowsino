@@ -1,4 +1,5 @@
 #include "pipe_networking.h"
+#include "server_functions.h"
 
 int main() {
   int to_client;
@@ -19,8 +20,7 @@ int main() {
       char buffer[BUFFER_SIZE];
       while (read(from_client, buffer, BUFFER_SIZE)) {
           if (strcmp(buffer, "exit") == 0) {
-            write(to_client, buffer, BUFFER_SIZE);
-            printf("sent %s to client\n", buffer);
+            exit_function(to_client, buffer);
           } else {
             char response[BUFFER_SIZE];
             int i = 0;
