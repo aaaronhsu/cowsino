@@ -18,14 +18,19 @@ int main() {
       to_client = server_connect(&from_client);
       char buffer[BUFFER_SIZE];
       while (read(from_client, buffer, BUFFER_SIZE)) {
-          char response[BUFFER_SIZE];
-          int i = 0;
-          while (buffer[i]) {
-            response[i] = (buffer[i] + 1);
-            i++;
+          if (strcmp(buffer, "exit") == 0) {
+            write(to_client, buffer, BUFFER_SIZE);
+            printf("sent %s to client\n", buffer);
+          } else {
+            char response[BUFFER_SIZE];
+            int i = 0;
+            while (buffer[i]) {
+              response[i] = (buffer[i] + 1);
+              i++;
+            }
+            write(to_client, response, BUFFER_SIZE);
+            printf("sent %s to client\n", response);
           }
-          write(to_client, response, BUFFER_SIZE);
-          printf("sent %s to client\n", response);
       }
       exit(0);
     }

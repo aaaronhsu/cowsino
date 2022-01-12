@@ -1,13 +1,5 @@
 #include "pipe_networking.h"
 
-/*=========================
-  server_setup
-  args:
-  creates the WKP (upstream) and opens it, waiting for a
-  connection.
-  removes the WKP once a connection has been made
-  returns the file descriptor for the upstream pipe.
-  =========================*/
 int server_setup() {
   mkfifo(WKP, 0644);
   int from_client = open(WKP, O_RDONLY);
@@ -15,15 +7,6 @@ int server_setup() {
   return from_client;
 }
 
-/*=========================
-  server_handshake
-  args: int * to_client
-
-  Performs the server side pipe 3 way handshake.
-  Sets *to_client to the file desdcriptor to the downstream pipe.
-
-  returns the file descriptor for the upstream pipe.
-  =========================*/
 int server_connect(int *from_client) {
   // the pipe already exists now
 
@@ -48,16 +31,6 @@ int server_connect(int *from_client) {
   return to_client;
 }
 
-
-/*=========================
-  client_handshake
-  args: int * to_server
-
-  Performs the client side pipe 3 way handshake.
-  Sets *to_server to the file descriptor for the upstream pipe.
-
-  returns the file descriptor for the downstream pipe.
-  =========================*/
 int client_handshake(int *to_server) {
   // client creates a secret pipe (named pid)
   char secret_pipe[HANDSHAKE_BUFFER_SIZE];
