@@ -38,15 +38,21 @@ On client connect, the user will be prompted to either log in or create an accou
 - We will be building off of assignments 22/23 to establish client/server communication (3 step handshake, forking processes, and pipes)
 
 ### Project Breakdown
-- **Aaron**: Parse user input and execute commands with parameters. Implement game logic and modify variables that relate to the game.
-- **Eliza**: Create structs and store/retrieve user data from files.
+- **Aaron**: 
+  - Parse user input and implement help and exit commands. 
+  - Implement game logic and modify variables that relate to the game. Implement the balance functionality. 
+  - Implement the play flip and play dice commands.
+- **Eliza**: 
+  - Create structs and store/retrieve user data from files. Implement the balance function.
+  - Implement the login/create account functionality.
+  - Impelemtn the play wheel command.
 
 ## Project Timeline (due 1/21)
-- **1/13**: Start with previous assignment.
-- **1/14**: Parse user input (serverside) and run (empty) functions with parameters. Store user data locally within the program.
+- **1/13**: Start with previous assignment (pipes and handshake)
+- **1/14**: Parse user input (serverside) and run (empty) functions with parameters. Store user data locally within the program. Implement exit and help.
 - **1/17**: Implement user struct and login system (by reading/writing to files). Create a coinflip game.
-- **1/18**: MVP (current description of the project)
+- **1/18**: MVP (current description of the project)- implement the dice and wheel games.
 - **1/19**: Semaphores to make sure that a client isn't logged into the server through multiple terminals at the same time.
-- **1/20**: Implement dice game and fix bugs.
+- **1/20**: Fix bugs and consider implementing multiplayer games. 
 
 If the project is completed on time and the deadline is after 1/21, more games can be implemented.
