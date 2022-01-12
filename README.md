@@ -16,6 +16,7 @@ On client connect, the user will be prompted to either log in or create an accou
 - `create <username> <password>`: Creates a new user with the given username and password.
 - `balance`: Displays the current balance of the user.
 - `play flip <amount> <heads/tails>`: Plays a coinflip game, betting the given amount of *currency* on the given side of the coin.
+- `play dice <amount> <number of dice> <sum guess>`: Plays a dice game, betting the given amount of *currency* on the sum of the dice. The closer the user is to the sum guess, the higher the payout.
 - `exit`: Exits the program.
 - `help`: Displays a list of commands that can be run.
 
@@ -44,4 +45,7 @@ On client connect, the user will be prompted to either log in or create an accou
 - **1/14**: Parse user input (serverside) and run (empty) functions with parameters. Store user data locally within the program.
 - **1/17**: Implement user struct and login system (by reading/writing to files). Create a coinflip game.
 - **1/18**: MVP (current description of the project)
-- **1/20**: Semaphores to make sure that a client isn't logged into the server through multiple terminals at the same time. More games.
+- **1/19**: Semaphores to make sure that a client isn't logged into the server through multiple terminals at the same time.
+- **1/20**: Implement dice game and fix bugs.
+
+If the project is completed on time and the deadline is after 1/21, more games can be implemented.
