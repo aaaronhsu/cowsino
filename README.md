@@ -2,7 +2,7 @@
 Aaron Hsu & Eliza Knapp (Period 5)
 
 
-## Description of Project
+### Description of Project
 Cowsino is a casino where users can log into a server to gamble *currency* by playing simple text-based chance games. User data (username, password, balance) is stored in a file system and multiple users can interact with the cowsino at a time.
 
 The *currency* is not yet named.
@@ -35,7 +35,7 @@ On client connect, the user will be prompted to either log in or create an accou
 - **Sockets**: If we decide to implement multiplayer games.
 
 ### Data Structures/Methods
-- User struct: (char * username, char * password, int balance)
+- User struct: (`char * username, char * password, int balance`)
 - We will be building off of assignments 22/23 to establish client/server communication (3 step handshake, forking processes, and pipes)
 
 ### Project Breakdown
