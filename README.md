@@ -3,22 +3,20 @@ Aaron Hsu & Eliza Knapp (Period 5)
 
 
 ### Description of Project
-Cowsino is a casino where users can log into a server to gamble *currency* by playing simple text-based chance games. User data (username, password, balance) is stored in a file system and multiple users can interact with the cowsino at a time.
-
-The *currency* is not yet named.
+Cowsino is a casino where users can log into a server to gamble moonies by playing simple text-based chance games. User data (username, password, balance) is stored in a file system and multiple users can interact with the cowsino at a time.
 
 
 ## UI
 
 ### Interface
-On client connect, the user will be prompted to either log in or create an account. After a user sucessfully logs in (by entering a valid username and corresponding password stored in a file system), they will be able to spend their *currency* to play an assortment of text-based chance games that can earn them *currency*. When the user disconnects, the amount of *currency* they own is updated in the server.
+On client connect, the user will be prompted to either log in or create an account. After a user sucessfully logs in (by entering a valid username and corresponding password stored in a file system), they will be able to spend their moonies to play an assortment of text-based chance games that can earn them moonies. When the user disconnects, the amount of moonies they own is updated in the server.
 
 ### List of commands that can be run:
 - `login <username> <password>`: Logs in a user with the given username and password.
 - `create <username> <password>`: Creates a new user with the given username and password.
 - `balance`: Displays the current balance of the user.
-- `play flip <amount> <heads/tails>`: Plays a coinflip game, betting the given amount of *currency* on the given side of the coin.
-- `play dice <amount> <number of dice> <sum guess>`: Plays a dice game, betting the given amount of *currency* on the sum of the dice. The closer the user's guess is to actual sum, the higher the payout.
+- `play flip <amount> <heads/tails>`: Plays a coinflip game, betting the given amount of moonies on the given side of the coin.
+- `play dice <amount> <number of dice> <sum guess>`: Plays a dice game, betting the given amount of moonies on the sum of the dice. The closer the user's guess is to actual sum, the higher the payout.
 - `exit`: Exits the program.
 - `help`: Displays a list of commands that can be run.
 
