@@ -44,14 +44,18 @@ int main() {
               char *bet_amount = strtok(NULL, " ");
               char *bet_guess = strtok(NULL, " ");
 
+              int bet_amount_int = -1;
+              int bet_guess_int = -1;
+              sscanf(bet_amount, "%d", &bet_amount_int);
+              sscanf(bet_guess, "%d", &bet_guess_int);
+
               // check if the bet amount is an integer
-              int bet_amount_int = atoi(bet_amount);
               if (bet_amount_int <= 0 || bet_amount_int > account -> balance) {
                 write(to_client, "invalid bet amount.\n", BUFFER_SIZE);
                 continue;
               }
 
-              int payout = play_flip(bet_amount);
+              int payout = play_flip(bet_amount_int);
               account -> balance += payout;
 
               write(to_client, "succesfully played flip", BUFFER_SIZE);
@@ -61,15 +65,21 @@ int main() {
               char *num_dice = strtok(NULL, " ");
               char *bet_guess = strtok(NULL, " ");
 
+              int bet_amount_int = -1;
+              int num_dice_int = -1;
+              int bet_guess_int = -1;
+              sscanf(bet_amount, "%d", &bet_amount_int);
+              sscanf(num_dice, "%d", &num_dice_int);
+              sscanf(bet_guess, "%d", &bet_guess_int);
+
 
               // check if the bet amount is an integer
-              int bet_amount_int = atoi(bet_amount);
               if (bet_amount_int <= 0 || bet_amount_int > account -> balance) {
                 write(to_client, "invalid bet amount.\n", BUFFER_SIZE);
                 continue;
               }
 
-              int payout = play_dice(bet_amount, num_dice, bet_guess);
+              int payout = play_dice(bet_amount_int, num_dice_int, bet_guess_int);
               account -> balance += payout;
 
               write(to_client, "succesfully played dice", BUFFER_SIZE);
@@ -77,14 +87,17 @@ int main() {
             } else if (strcmp(game_name, "wheel") == 0) {
               char *num_spins = strtok(NULL, " ");
 
+              int num_spins_int = -1;
+              sscanf(num_spins, "%d", &num_spins_int);
+
               // check if the num spins is an integer
-              int num_spins_int = atoi(bet_amount);
+              
               if (num_spins_int <= 0) {
                 write(to_client, "invalid spin amount.\n", BUFFER_SIZE);
                 continue;
               }
 
-              int payout = play_wheel(num_spins);
+              int payout = play_wheel(num_spins_int);
               account -> balance += payout;
 
               write(to_client, "succesfully played spin", BUFFER_SIZE);

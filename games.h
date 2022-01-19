@@ -20,4 +20,8 @@ check wheel
 
 */
 
+int play_flip(int money);
+int play_dice(int money, int num_dice, int sum_guess);
+int play_wheel(int num_spins);
+
 #endif
