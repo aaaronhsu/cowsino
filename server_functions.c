@@ -1,7 +1,6 @@
 #include "server_functions.h"
-#include "pipe_networking.h"
 
-void exit_function(int to_client, char buffer[]) {
-    write(to_client, buffer, BUFFER_SIZE);
+void exit_function(int to_client, char buffer[], int size) {
+    write(to_client, buffer, size);
     printf("sent %s to client\n", buffer);
 }
