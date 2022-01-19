@@ -108,6 +108,8 @@ int main() {
           } else if (strcmp(command, "help") == 0) {
             // if command is "help"
             write(to_client, "help", BUFFER_SIZE);
+          } else {
+            write(to_client, "invalid command", BUFFER_SIZE);
           }
         } else {
           // check what the user is trying to do
@@ -153,6 +155,8 @@ int main() {
           } else if (strcmp(command, "help") == 0) {
             // if command is "help"
             write(to_client, "help", BUFFER_SIZE);
+          } else {
+            write(to_client, "invalid command", BUFFER_SIZE);
           }
 
       }
