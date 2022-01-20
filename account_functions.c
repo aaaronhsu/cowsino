@@ -9,3 +9,12 @@ struct account * check_existance(char *username, char *password, int file) {
 }
 
 // add account- stores the values separated by spaces for parsing
+// under assumption that this account does not already exist
+void add_account(char *username, char *password, int file) {
+  char *to_add;
+  strcat(to_add, username);
+  strcat(to_add, " ");
+  strcat(to_add, password);
+  strcat(to_add, " 0\n"); // auto sets the balance to 0
+  write(file, *to_add, 2 * ACCOUNT_ITEM_SIZE + 3);
+}

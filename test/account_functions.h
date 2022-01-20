@@ -1,3 +1,12 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <string.h>
+#include <errno.h>
+
 #ifndef ACCOUNT_FUNCTIONS_H
 #define ACCOUNT_FUNCTIONS_H
 
@@ -13,6 +22,12 @@ struct account {
 struct account * check_existance(char *username, char *password, int file);
 
 void add_account(char *username, char *password, int file);
+
+void print_account(struct account *acc, int num);
+
+long long get_size(char *file);
+
+void read_info(int file);
 
 /*
 
