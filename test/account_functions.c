@@ -1,6 +1,6 @@
 #include "account_functions.h"
 
-struct account * check_existance(char *username, char *password, char *file) {
+struct account * check_existance(char *username, char *password, char *file_name) {
   struct account *ret = malloc(sizeof(struct account));
   strncpy(ret -> username, username, sizeof(ret -> username));
   strncpy(ret -> password, password, sizeof(ret -> password));;
@@ -8,14 +8,16 @@ struct account * check_existance(char *username, char *password, char *file) {
   return ret;
 }
 
+// for file reading later: int file = open("accounts.txt", O_CREAT | O_RDWR | O_APPEND, 0777);
+
 // add account- stores the values separated by spaces for parsing
 // under assumption that this account does not already exist
-void add_account(char *username, char *password, char *file) {
+void add_account(char *username, char *password, char *file_name) {
   struct account *add = malloc(sizeof(struct account));
   strncpy(add -> username, username, sizeof(add -> username));
   strncpy(add -> password, password, sizeof(add -> password));;
   add -> balance = 0;
-  print_account(add, 10);
+  int file = open(file_name, O_WRONLY | O_CREAT | O_APPEND, 0777);
   write(file, add, sizeof(struct account));
 }
 
@@ -23,21 +25,22 @@ void print_account(struct account *acc, int num) {
   printf("Entry %d:\tUser: %s\tPass: %s\tBalance: %d\n", num, acc -> username, acc -> password, acc -> balance);
 }
 
-long long get_size(char *file) {
+long long get_size(char *file_name) {
   struct stat status;
-  char *name = "accounts.txt";
-  if (stat(name, &status) == -1) {
+  if (stat(file_name, &status) == -1) {
     printf("Error opening file: %s\n", strerror(errno));
     return -1; // error
   }
   return (status.st_size); // in the file stats
 }
 
-void read_info(char *file) {
-  long long size = get_size(file);
+void read_info(char *file_name) {
+  long long size = get_size(file_name);
   if (size == -1) printf("smth went wrong\n");
   int num_accounts = (size / sizeof(struct account));
   struct account accounts[num_accounts];
+
+  int file = open(file_name, O_RDONLY, 0777);
   read(file, accounts, size);
   for (int i = 0; i < num_accounts; i++) {
     print_account(&(accounts[i]), i);
