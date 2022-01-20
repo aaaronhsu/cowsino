@@ -1,5 +1,6 @@
 #include "pipe_networking.h"
 #include "server_functions.h"
+#include "account_functions.h"
 
 
 int main() {
@@ -10,30 +11,33 @@ int main() {
   printf("server starting...\n");
 
   while (1) {
-
+    // handshake stuff
     from_client = server_setup();
 
+     // create account file (up here so that you can access same file each new client)
+    int file = open("accounts.txt", O_CREAT | O_RDWR | O_APPEND, 0777);
+
+    // fork for many clients
     f = fork();
     if (f) {
       close(from_client);
     } else {
+      // handshake stuff
       to_client = server_connect(&from_client);
-
-      // struct account here (check all the data stuff)
-      char *file = "accounts.txt";
+  
+      // create an account for whichever user might log in
       struct account *account = malloc(sizeof(struct account));
+      // automatically not logged in
       int logged_in = 0;
 
       char buffer[BUFFER_SIZE];
       while (read(from_client, buffer, BUFFER_SIZE)) {
-
-        // parse the buffer
+        // parse the buffer (command will be the first element of the buffer)
         char *command = strtok(buffer, " ");
-
+        // if "exit", then exit
         if (strcmp(command, "exit")) {
           exit_function(to_client, buffer, BUFFER_SIZE);
         }
-
 
         // check if the user is logged in
         if (logged_in) {
@@ -112,6 +116,8 @@ int main() {
             write(to_client, "invalid command", BUFFER_SIZE);
           }
         } else {
+          // IF NOT LOGGED IN:
+
           // check what the user is trying to do
           if (strcmp(command, "login") == 0) {
             // if command is "login" try to log in
