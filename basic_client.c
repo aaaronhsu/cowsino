@@ -1,4 +1,5 @@
 #include "pipe_networking.h"
+#include "global.h"
 
 int main() {
   printf("type \"exit\" to leave\n");

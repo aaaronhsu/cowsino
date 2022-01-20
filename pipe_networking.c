@@ -1,4 +1,5 @@
 #include "pipe_networking.h"
+#include "global.h"
 
 int server_setup() {
   mkfifo(WKP, 0644);

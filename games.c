@@ -1,8 +1,11 @@
 #include "games.h"
+#include "global.h"
 
 int play_flip(int money) {
   // return random boolean value
-  return (rand() % 2) ? money : -money;
+  srand(time(NULL));
+  int r = rand() % 2;
+  return (r) ? money : -money;
 }
 
 int play_dice(int money, int num_dice, int sum_guess) {

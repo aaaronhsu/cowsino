@@ -1,6 +1,8 @@
 #include "pipe_networking.h"
 #include "server_functions.h"
 #include "account_functions.h"
+#include "games.h"
+#include "global.h"
 
 
 int main() {
@@ -124,17 +126,17 @@ int main() {
             char *username = strtok(NULL, " ");
             char *password = strtok(NULL, " ");
 
-            struct account *check_existance = check_existance(username, password, file);
+            struct account * seach = check_existance(username, file);
 
             // check if the user exists
             if (account != NULL) {
               // if the user exists, check if the password is correct
-              if (strcmp(check_existance -> password, password) == 0) {
+              if (strcmp(search -> password, password) == 0) {
                 logged_in = 1;
 
-                account -> username = check_username -> username;
-                account -> password = check_existance -> password;
-                account -> balance = check_existance -> balance;
+                account -> username = search -> username;
+                account -> password = search -> password;
+                account -> balance = search -> balance;
 
                 write(to_client, "logged in", BUFFER_SIZE);
               }
@@ -147,7 +149,7 @@ int main() {
             char *username = strtok(NULL, " ");
             char *password = strtok(NULL, " ");
 
-            struct account *check_existance = check_existance(username, password, file);
+            struct account *check_existance = check_existance(username, file);
 
             // check if the user exists
             if (check_existance != NULL) {

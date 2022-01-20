@@ -19,7 +19,7 @@ struct account {
   int balance;
 };
 
-struct account * check_existance(char *username, char *password, char *file_name);
+struct account * check_existance(char *username, char *file_name);
 
 void add_account(char *username, char *password, char *file_name);
 

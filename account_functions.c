@@ -1,20 +1,60 @@
 #include "account_functions.h"
+#include "global.h"
 
-struct account * check_existance(char *username, char *password, int file) {
-  struct account *ret = malloc(sizeof(struct account));
-  strncpy(ret -> username, username, sizeof(ret -> username));
-  strncpy(ret -> password, password, sizeof(ret -> password));;
-  ret -> balance = 0;
-  return ret;
+// takes in a username and password
+struct account * check_existance(char *username, char *file_name) {
+long long size = get_size(file_name);
+  if (size == -1) printf("smth went wrong\n");
+  int num_accounts = (size / sizeof(struct account));
+  struct account accounts[num_accounts];
+
+  int file = open(file_name, O_RDONLY, 0777);
+  read(file, accounts, size);
+  for (int i = 0; i < num_accounts; i++) {
+    if (strcmp(accounts[i].username, username) == 0) {
+      struct account * ret = malloc(sizeof(struct account));
+      strncpy(ret -> username, accounts[i].username, sizeof(ret -> username));
+      strncpy(ret -> password, accounts[i].password, sizeof(ret -> password));
+      ret -> balance = accounts[i].balance;
+      return ret;
+    }
+  }
+  return NULL;
 }
 
-// add account- stores the values separated by spaces for parsing
 // under assumption that this account does not already exist
-void add_account(char *username, char *password, int file) {
-  char *to_add;
-  strcat(to_add, username);
-  strcat(to_add, " ");
-  strcat(to_add, password);
-  strcat(to_add, " 0\n"); // auto sets the balance to 0
-  write(file, *to_add, 2 * ACCOUNT_ITEM_SIZE + 3);
+void add_account(char *username, char *password, char *file_name) {
+  struct account *add = malloc(sizeof(struct account));
+  strncpy(add -> username, username, sizeof(add -> username));
+  strncpy(add -> password, password, sizeof(add -> password));;
+  add -> balance = 0;
+  int file = open(file_name, O_WRONLY | O_CREAT | O_APPEND, 0777);
+  write(file, add, sizeof(struct account));
+}
+
+void print_account(struct account *acc, int num) {
+  printf("Entry %d:\tUser: %s\tPass: %s\tBalance: %d\n", num, acc -> username, acc -> password, acc -> balance);
+}
+
+long long get_size(char *file_name) {
+  struct stat status;
+  if (stat(file_name, &status) == -1) {
+    printf("Error opening file: %s\n", strerror(errno));
+    return -1; // error
+  }
+  return (status.st_size); // in the file stats
+}
+
+// for testing, reads out the entire file
+void read_info(char *file_name) {
+  long long size = get_size(file_name);
+  if (size == -1) printf("smth went wrong\n");
+  int num_accounts = (size / sizeof(struct account));
+  struct account accounts[num_accounts];
+
+  int file = open(file_name, O_RDONLY, 0777);
+  read(file, accounts, size);
+  for (int i = 0; i < num_accounts; i++) {
+    print_account(&(accounts[i]), i);
+  }
 }
