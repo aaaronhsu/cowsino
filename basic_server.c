@@ -166,6 +166,7 @@ int main() {
           } else {
             write(to_client, "invalid command", BUFFER_SIZE);
           }
+        }
 
       }
       exit(0);
