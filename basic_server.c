@@ -126,16 +126,16 @@ int main() {
             char *username = strtok(NULL, " ");
             char *password = strtok(NULL, " ");
 
-            struct account * seach = check_existance(username, file);
+            struct account * search = check_existance(username, file);
 
             // check if the user exists
-            if (account != NULL) {
+            if (search != NULL) {
               // if the user exists, check if the password is correct
               if (strcmp(search -> password, password) == 0) {
                 logged_in = 1;
 
-                account -> username = search -> username;
-                account -> password = search -> password;
+                strncpy(account -> username, search -> username, sizeof(account -> username));
+                strncpy(account -> password, search -> password, sizeof(account -> password));
                 account -> balance = search -> balance;
 
                 write(to_client, "logged in", BUFFER_SIZE);
@@ -149,10 +149,10 @@ int main() {
             char *username = strtok(NULL, " ");
             char *password = strtok(NULL, " ");
 
-            struct account *check_existance = check_existance(username, file);
+            struct account *search = check_existance(username, file);
 
             // check if the user exists
-            if (check_existance != NULL) {
+            if (search != NULL) {
               write(to_client, "account already exists", BUFFER_SIZE);
             } else {
               // create the user
