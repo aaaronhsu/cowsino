@@ -15,7 +15,7 @@ int main() {
     from_client = server_setup();
 
      // create account file (up here so that you can access same file each new client)
-    int file = open("accounts.txt", O_CREAT | O_RDWR | O_APPEND, 0777);
+     char *file = "accounts.txt";
 
     // fork for many clients
     f = fork();

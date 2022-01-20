@@ -19,15 +19,15 @@ struct account {
   int balance;
 };
 
-struct account * check_existance(char *username, char *password, int file);
+struct account * check_existance(char *username, char *password, char *file);
 
-void add_account(char *username, char *password, int file);
+void add_account(char *username, char *password, char *file);
 
 void print_account(struct account *acc, int num);
 
 long long get_size(char *file);
 
-void read_info(int file);
+void read_info(char *file);
 
 /*
 
