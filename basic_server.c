@@ -103,9 +103,12 @@ int main() {
                 continue;
               }
 
-              int payout = play_wheel(num_spins_int);
+              int * nums = play_wheel(num_spins_int);
+              int payout = nums[num_spins_int - 1];
               account -> balance += payout;
 
+              // HERE, SOMEHOW WRITE THE ARRAY TO THE CLIENT AND GIVE THEM THE FINAL NUMBER CLEARLY
+              
               write(to_client, "succesfully played spin", BUFFER_SIZE);
 
             } else {
