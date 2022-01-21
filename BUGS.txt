@@ -1,0 +1,3 @@
+Bugs that I have found thus far: [we shall talk about then tmrw in class...]
+1. on the first thing the client sends to the server, it just sends back the string, not "invalid commnad"
+2. no idea where it's sending stuff back to the server

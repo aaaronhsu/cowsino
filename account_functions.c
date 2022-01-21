@@ -3,12 +3,13 @@
 
 // takes in a username and password
 struct account * check_existance(char *username, char *file_name) {
-long long size = get_size(file_name);
+  int file = open(file_name, O_CREAT | O_APPEND | O_RDONLY, 0777);
+
+  long long size = get_size(file_name);
   if (size == -1) printf("smth went wrong\n");
   int num_accounts = (size / sizeof(struct account));
   struct account accounts[num_accounts];
 
-  int file = open(file_name, O_RDONLY, 0777);
   read(file, accounts, size);
   for (int i = 0; i < num_accounts; i++) {
     if (strcmp(accounts[i].username, username) == 0) {
