@@ -13,7 +13,7 @@ int main() {
   char buffer[BUFFER_SIZE];
 
   while (fgets(buffer, BUFFER_SIZE, stdin)) {
-      sscanf(buffer, "%s", buffer); // remove newline
+      buffer[strcspn(buffer, "\n")] = 0;
       write(to_server, buffer, BUFFER_SIZE);
       // receiving
       read(from_server, buffer, BUFFER_SIZE);

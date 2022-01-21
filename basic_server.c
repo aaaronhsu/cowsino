@@ -35,10 +35,23 @@ int main() {
       char buffer[BUFFER_SIZE];
       while (read(from_client, buffer, BUFFER_SIZE)) {
         // parse the buffer (command will be the first element of the buffer)
-        char *command = strtok(buffer, " ");
+        
+        char * line = buffer;
+        // PROBLEM- entire line only reads before the spaces
+        printf("entire line: %s\n", line);
+        char ** args = calloc(2, sizeof(char *));
+        args[0] = line;
+        if (strsep(&line, "") != NULL) args[1] = line;
+ 
+        char *command = args[0];
+        char *stuff_after = args[1];
+
+        printf("%s\n", command);
+        printf("%s\n", stuff_after);
         // if "exit", then exit
-        if (strcmp(command, "exit")) {
-          exit_function(to_client, buffer, BUFFER_SIZE);
+        if (strcmp(command, "exit") == 0) {
+          exit_function(to_client, buffer, BUFFER_SIZE, account);
+          break;
         }
 
         // check if the user is logged in
@@ -128,6 +141,8 @@ int main() {
             // if command is "login" try to log in
             char *username = strtok(NULL, " ");
             char *password = strtok(NULL, " ");
+
+            printf("%s %s", username, password);
 
             struct account * search = check_existance(username, file);
 

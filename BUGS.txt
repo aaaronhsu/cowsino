@@ -5,3 +5,6 @@ Bugs that I have found thus far: [we shall talk about then tmrw in class...]
 ALSO NOTE:
 - next thing for me (eliza) to do is to set up the sending of the wheel info 
 functionality to the client
+
+TO DO (aaron probably bc I need to debug the code which requires running):
+- implement the help and balance functions
