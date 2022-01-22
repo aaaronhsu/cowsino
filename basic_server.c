@@ -52,11 +52,17 @@ int main() {
         if (strcmp(command, "exit") == 0) {
           exit_function(to_client, buffer, BUFFER_SIZE, account);
           break;
+        } else if (strcmp(command, "help") == 0) {
+          exit_function(to_client, logged_in);
         }
 
         // check if the user is logged in
         if (logged_in) {
-          if (strcmp(command, "play") == 0) {
+          if (strcmp(command, "balance") == 0) {
+            
+            balance_function(to_client, account);
+
+          } else if (strcmp(command, "play") == 0) {
             char *game_name = strtok(NULL, " ");
 
             if (strcmp(game_name, "flip") == 0) {
