@@ -9,7 +9,7 @@ int main() {
 
   from_server = client_handshake( &to_server );
 
-  printf("Send string: ");
+  printf("Enter a command: ");
   char buffer[BUFFER_SIZE];
 
   while (fgets(buffer, BUFFER_SIZE, stdin)) {
