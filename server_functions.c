@@ -23,7 +23,7 @@ void help_function(int to_client, int logged_in) {
       // the user is not logged in, show login commands
       buffer = "Commands:\nlogin <username> <password>\ncreate <username> <password>\nexit\n";
     }
-    write(to_client, buffer, size);
+    write(to_client, buffer, size_of(buffer));
     printf("sent help to client\n", buffer);
 }
 
