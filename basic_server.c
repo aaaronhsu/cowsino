@@ -120,7 +120,7 @@ int main() {
               if (strsep(&game_args, " ") != NULL) bet_info[1] = game_args;
               if (strsep(&game_args, " ") != NULL) bet_info[2] = game_args;
 
-              if (bet_info[1] == NULL || bet_info[1] == NULL || strchr(bet_info[2], ' ') != NULL) {
+              if (bet_info[0] == NULL || bet_info[1] == NULL || strchr(bet_info[2], ' ') != NULL) {
                 write(to_client, "play dice takes in 3 arguments- bet amount, number of dice, and bet guess", BUFFER_SIZE);
                 continue;
               }
