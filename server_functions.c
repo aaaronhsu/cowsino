@@ -9,10 +9,7 @@ void exit_function(int to_client, char buffer[], struct account *account) {
     // find the account in the file and update its balance!
     // STILL TO FINISH
 
-    char * exit_message = "";
-    sprintf("See you next time, %s!\n", account -> username);
-
-    write(to_client, exit_message, BUFFER_SIZE);
+    write(to_client, buffer, BUFFER_SIZE);
     printf("sent exit to client\n");
 }
 
