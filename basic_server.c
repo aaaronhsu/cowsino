@@ -46,8 +46,8 @@ int main() {
         char *command = args[0];
         char *stuff_after = args[1];
 
-        printf("%s\n", command);
-        printf("%s\n", stuff_after);
+        printf("the primary command is: %s\n", command);
+        printf("the arguments are: %s\n", stuff_after);
         // if "exit", then exit
         if (strcmp(command, "exit") == 0) {
           printf("THE EXIT FUNCTION IS BEING RUN!!!\n");
