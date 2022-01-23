@@ -35,5 +35,5 @@ Aaron: Coded help/balance function and fixed issue where help would only run onc
 Eliza: Got login, create, flip, dice and wheel string parsing to work and wrote update balance function in account_functions.
 
 1/23
-Aaron: 
+Aaron: Fixed balance updating and added changed messages to client
 Eliza: Added friendlier error messages for invalid input
