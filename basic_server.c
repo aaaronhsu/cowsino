@@ -288,7 +288,7 @@ int main() {
       exit(0);
     }
 
-    printf("client has connected, but still waiting for new connections\n");
+    printf("new client has connecteda and waiting for new connections\n");
   }
   return 0;
 }

@@ -26,7 +26,7 @@ int server_connect(int *from_client) {
   char ack[HANDSHAKE_BUFFER_SIZE];
   read(*from_client, ack, HANDSHAKE_BUFFER_SIZE);
   if (!strcmp(ack, ACK)) {
-    printf("server has started!\n");
+    // printf("server has started!\n");
   }
 
   return to_client;
