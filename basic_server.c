@@ -50,9 +50,11 @@ int main() {
         printf("%s\n", stuff_after);
         // if "exit", then exit
         if (strcmp(command, "exit") == 0) {
+          printf("THE EXIT FUNCTION IS BEING RUN!!!\n");
           exit_function(to_client, buffer, BUFFER_SIZE, account);
           break;
         } else if (strcmp(command, "help") == 0) {
+          printf("THE HELP FUNCTION IS BEING RUN!!!\n");
           help_function(to_client, logged_in);
         }
 
@@ -145,6 +147,7 @@ int main() {
           // check what the user is trying to do
           if (strcmp(command, "login") == 0) {
             // if command is "login" try to log in
+            printf("THE CLIENT IS TRYING TO LOG IN!!!\n");
             char *username = strtok(NULL, " ");
             char *password = strtok(NULL, " ");
 
@@ -170,6 +173,7 @@ int main() {
 
           } else if (strcmp(command, "create") == 0) {
             // if command is "create"
+            printf("THE CLIENT IS TRYING TO CREATE AN ACCOUNT!!!\n");
             char *username = strtok(NULL, " ");
             char *password = strtok(NULL, " ");
 
