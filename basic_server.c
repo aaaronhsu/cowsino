@@ -37,7 +37,7 @@ int main() {
         // parse the buffer (command will be the first element of the buffer)
         
         char * line = buffer;
-        printf("entire line: %s\n", line);
+        // printf("entire line: %s\n", line);
         char ** args = calloc(2, sizeof(char *));
         args[0] = line;
         if (strsep(&line, " ") != NULL) args[1] = line;
@@ -45,8 +45,9 @@ int main() {
         char *command = args[0];
         char *stuff_after = args[1];
 
-        printf("the primary command is: %s\n", command);
-        printf("the arguments are: %s\n", stuff_after);
+        // printf("the primary command is: %s\n", command);
+        // printf("the arguments are: %s\n", stuff_after);
+
         // if "exit", then exit
         if (strcmp(command, "exit") == 0) {
           printf("THE EXIT FUNCTION IS BEING RUN!!!\n");
@@ -74,7 +75,7 @@ int main() {
             char *game_args = game_holder[1];
 
             if (game_args == NULL) {
-              write(to_client, "play flip requires 1 arguments, play dice requires 3 arguments, and play wheel requires 1 argument", BUFFER_SIZE);
+              write(to_client, "USAGE:\nplay flip <amount> <heads/tails>\nplay dice <amount> <number of dice> <sum guess>\nplay wheel <amount spun>\n", BUFFER_SIZE);
               continue;
             }
 
@@ -85,10 +86,10 @@ int main() {
               
               char *bet_amount = bet_info[0];
               char *bet_guess = bet_info[1];
-              printf("bet amount: %s\n", bet_amount);
+              // printf("bet amount: %s\n", bet_amount);
 
               if (bet_guess == NULL || strchr(bet_guess, ' ') != NULL) {
-                write(to_client, "play flip takes in 2 arguments- bet amount and bet guess", BUFFER_SIZE);
+                write(to_client, "USAGE:\nplay flip <amount> <heads/tails>\n", BUFFER_SIZE);
                 continue;
               }
 
@@ -97,11 +98,11 @@ int main() {
               // doesn't use bet guess, it's just to make it immersive
               int bet_guess_int = -1;
               sscanf(bet_amount, "%d", &bet_amount_int);
-              printf("bet amount int: %d\n", bet_amount_int);
+              // printf("bet amount int: %d\n", bet_amount_int);
 
               // check if the bet amount is an integer
               if (bet_amount_int <= 0 || bet_amount_int > account -> balance) {
-                write(to_client, "invalid bet amount.\n", BUFFER_SIZE);
+                write(to_client, "Please enter a valid bet amount\n", BUFFER_SIZE);
                 continue;
               }
 
@@ -110,9 +111,9 @@ int main() {
               update_balance(account -> username, account -> balance, file);
 
               if (payout >= 0) { 
-                write(to_client, "you guessed the flip correctly, you won your bet!", BUFFER_SIZE);
+                write(to_client, "You guessed the flip correctly and won your bet!\n", BUFFER_SIZE);
               } else {
-                write(to_client, "oh no! you lost your bet. try again!", BUFFER_SIZE);
+                write(to_client, "Oh no! You lost your bet... Try again!\n", BUFFER_SIZE);
               }
 
             } else if (strcmp(game_name, "dice") == 0) {
@@ -122,7 +123,7 @@ int main() {
               if (strsep(&game_args, " ") != NULL) bet_info[2] = game_args;
 
               if (bet_info[0] == NULL || bet_info[1] == NULL || bet_info[2] == NULL || strchr(bet_info[2], ' ') != NULL) {
-                write(to_client, "play dice takes in 3 arguments- bet amount, number of dice, and bet guess", BUFFER_SIZE);
+                write(to_client, "USAGE:\nplay dice <amount> <number of dice> <sum guess>\n", BUFFER_SIZE);
                 continue;
               }
 
@@ -140,7 +141,7 @@ int main() {
 
               // check if the bet amount is an integer
               if (bet_amount_int <= 0 || bet_amount_int > account -> balance) {
-                write(to_client, "invalid bet amount.\n", BUFFER_SIZE);
+                write(to_client, "Please enter a valid bet amount\n", BUFFER_SIZE);
                 continue;
               }
 
@@ -150,15 +151,15 @@ int main() {
 
 
               if (payout > 0) { 
-                write(to_client, "you guessed the sum correctly- you won 3 times your bet!", BUFFER_SIZE);
+                write(to_client, "You guessed the sum correctly and won 3 times your bet!\n", BUFFER_SIZE);
               } else {
-                write(to_client, "oh no! you lost your bet. try again!", BUFFER_SIZE);
+                write(to_client, "Oh no! You lost your bet... Try again!\n", BUFFER_SIZE);
               }
 
             } else if (strcmp(game_name, "wheel") == 0) {
               // game_args is the info
               if (strchr(game_args, ' ') != NULL) {
-                write(to_client, "play wheel takes in 1 argument- number of spins", BUFFER_SIZE);
+                write(to_client, "USAGE:\nplay wheel <amount spun>\n", BUFFER_SIZE);
                 continue;
               }
 
@@ -170,7 +171,7 @@ int main() {
               // check if the num spins is an integer
               
               if (num_spins_int <= 0) {
-                write(to_client, "invalid spin amount.\n", BUFFER_SIZE);
+                write(to_client, "Please enter a valid number of spins.\n", BUFFER_SIZE);
                 continue;
               }
 
@@ -183,20 +184,20 @@ int main() {
               // HERE, SOMEHOW WRITE THE ARRAY TO THE CLIENT AND GIVE THEM THE FINAL NUMBER CLEARLY
               
               if (payout > 0) { 
-                write(to_client, "you have won!", BUFFER_SIZE);
+                write(to_client, "You have won!\n", BUFFER_SIZE);
               } else {
-                write(to_client, "oh no! you lost. try again!", BUFFER_SIZE);
+                write(to_client, "Oh no! You lost. Try again!\n", BUFFER_SIZE);
               }
 
             } else {
-              write(to_client, "invalid game name", BUFFER_SIZE);
+              write(to_client, "USAGE:\nplay flip <amount> <heads/tails>\nplay dice <amount> <number of dice> <sum guess>\nplay wheel <amount spun>\n", BUFFER_SIZE);
             }
           } else if (strcmp(command, "help") == 0) {
             // if command is "help"
             write(to_client, "help", BUFFER_SIZE);
           } else {
             printf("CLIENT TRIED TO RUN SOMETHING THAT DOESN'T EXIST WHILE LOGGED IN\n");
-            write(to_client, "invalid command", BUFFER_SIZE);
+            write(to_client, "invalid command\n", BUFFER_SIZE);
           }
         } else {
           // IF NOT LOGGED IN:
@@ -235,17 +236,20 @@ int main() {
                 strncpy(account -> password, search -> password, sizeof(account -> password));
                 account -> balance = search -> balance;
 
-                write(to_client, "logged in", BUFFER_SIZE);
+                char * welcome_message = calloc(BUFFER_SIZE);
+                sprintf(welcome_message, "Welcome back, %s! You have %s moonies.\n", account -> username, account -> balance);
+
+                write(to_client, welcome_message, BUFFER_SIZE);
               }
             } else {
-              write(to_client, "account not found", BUFFER_SIZE);
+              write(to_client, "Account not found", BUFFER_SIZE);
             }
 
           } else if (strcmp(command, "create") == 0) {
             // if command is "create"
             printf("THE CLIENT IS TRYING TO CREATE AN ACCOUNT!!!\n");
 
-            printf("create account info: %s\n", stuff_after);
+            // printf("create account info: %s\n", stuff_after);
             char ** user_pass = calloc(2, sizeof(char *));
             args[0] = stuff_after;
             if (strsep(&stuff_after, " ") != NULL) args[1] = stuff_after;
@@ -255,8 +259,8 @@ int main() {
 
             char *temp_check = args[1];
             if (temp_check == NULL || strchr(temp_check, ' ') != NULL) {
-              printf("wrong number of create account arguments\n");
-              write(to_client, "create account takes in 2 arguments- username and password", BUFFER_SIZE);
+              // printf("wrong number of create account arguments\n");
+              write(to_client, "USAGE:create <username> <password>\n", BUFFER_SIZE)
               continue;
             }
 
@@ -266,16 +270,16 @@ int main() {
 
             // check if the user exists
             if (search != NULL) {
-              write(to_client, "account already exists", BUFFER_SIZE);
+              write(to_client, "This account already exists. Try logging in.\n", BUFFER_SIZE);
             } else {
               // create the user
               add_account(username, password, file);
-              write(to_client, "account created", BUFFER_SIZE);
+              write(to_client, "The account has been created!\n", BUFFER_SIZE);
             }
 
           } else {
             printf("CLIENT TRIED TO RUN SOMETHING THAT DOESN'T EXIST WHILE NOT LOGGED IN\n");
-            write(to_client, "invalid command", BUFFER_SIZE);
+            write(to_client, "USAGE:\nlogin <username> <password>\ncreate <username> <password>\n", BUFFER_SIZE);
           }
         }
 
