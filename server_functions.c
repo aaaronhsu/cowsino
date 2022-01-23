@@ -10,7 +10,7 @@ void exit_function(int to_client, char buffer[], struct account *account) {
     // STILL TO FINISH
 
     char * exit_message = "";
-    sprintf("See you next time, %s!\n", account -> name);
+    sprintf("See you next time, %s!\n", account -> username);
 
     write(to_client, exit_message, BUFFER_SIZE);
     printf("sent exit to client\n");
