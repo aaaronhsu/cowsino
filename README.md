@@ -31,7 +31,6 @@ On client connect, the user will be prompted to either log in or create an accou
 - **Processes**: Forking processes to have multiple clients connect at a time.
 - **Semaphores**: Ensure that a client isn't logged into the server through multiple terminals at the same time.
 - **Pipes**: To communicate between the server and the client.
-- **Sockets**: If we decide to implement multiplayer games.
 
 ### Data Structures/Methods
 - User struct: (`char * username, char * password, int balance`)
