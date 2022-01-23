@@ -9,7 +9,7 @@ void exit_function(int to_client, char buffer[], int size, struct account *accou
 
 
     write(to_client, buffer, size);
-    printf("sent %s to client\n");
+    printf("sent exit to client\n");
 }
 
 void help_function(int to_client, int logged_in) {
