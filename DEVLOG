@@ -1,0 +1,39 @@
+DEVLOG
+
+1/11
+Aaron: Worked on proposal
+Eliza: Worked on proposal
+
+1/12
+Aaron: Recoded exit function
+Eliza: Imported code from systems-22 and encountered makefile error
+
+1/14
+Aaron: Wrote .h files (games.h)
+Eliza: Wrote .h files (account_functions.h)
+
+1/16
+Aaron: Started coding string reading/parsing on server-side
+Eliza: Refactored code that handled account functionality (global.h) and moved some functions to different files
+
+1/18
+Aaron: Coded flip and dice games
+Eliza: Fixed makefile issue with account_functions.h
+
+1/19
+Aaron: Connected reading/parsing to games together so that players can now play games
+
+1/20
+Eliza: Created account structs and accounts.txt file to store account information
+
+1/21
+Aaron: Wrote logic for logging into/creating accounts
+Eliza: Coded wheel game
+
+1/22
+Aaron: Coded help/balance function and fixed issue where help would only run once
+Eliza: Flip/dice game now updates balance in accounts.txt after each game
+
+1/23
+Aaron: 
+Eliza:
