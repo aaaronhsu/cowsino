@@ -260,7 +260,7 @@ int main() {
             char *temp_check = args[1];
             if (temp_check == NULL || strchr(temp_check, ' ') != NULL) {
               // printf("wrong number of create account arguments\n");
-              write(to_client, "USAGE:create <username> <password>\n", BUFFER_SIZE);
+              write(to_client, "USAGE:\ncreate <username> <password>\n", BUFFER_SIZE);
               continue;
             }
 

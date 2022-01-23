@@ -22,7 +22,7 @@ int main() {
         printf("Request to exit!\n");
         exit(0);
       }
-      printf("Received response: %s\n", buffer);
+      printf("\n%s\n", buffer);
       printf("Enter a command: ");
   }
 
