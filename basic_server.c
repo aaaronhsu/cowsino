@@ -51,7 +51,7 @@ int main() {
         // if "exit", then exit
         if (strcmp(command, "exit") == 0) {
           printf("THE EXIT FUNCTION IS BEING RUN!!!\n");
-          exit_function(to_client, buffer, BUFFER_SIZE, account);
+          exit_function(to_client, buffer, account);
           break;
         } else if (strcmp(command, "help") == 0) {
           printf("THE HELP FUNCTION IS BEING RUN!!!\n");
@@ -149,10 +149,22 @@ int main() {
           if (strcmp(command, "login") == 0) {
             // if command is "login" try to log in
             printf("THE CLIENT IS TRYING TO LOG IN!!!\n");
-            char *username = strtok(NULL, " ");
-            char *password = strtok(NULL, " ");
 
-            printf("%s %s", username, password);
+            printf("login info: %s\n", stuff_after);
+            char ** user_pass = calloc(2, sizeof(char *));
+            args[0] = stuff_after;
+            if (strsep(&stuff_after, " ") != NULL) args[1] = stuff_after;
+
+            char *username = args[0];
+            char *password = args[1];
+
+            // check if there r more than 3 args
+            if (strsep(&password, " ") != NULL) {
+              printf("too many commands for the login function \n");
+              write(to_client, "the login function takes in only 2 arguments- username and password", BUFFER_SIZE);
+            }
+
+            printf("%s %s\n", username, password);
 
             struct account * search = check_existance(username, file);
 
@@ -189,9 +201,6 @@ int main() {
               write(to_client, "account created", BUFFER_SIZE);
             }
 
-          } else if (strcmp(command, "help") == 0) {
-            // if command is "help"
-            write(to_client, "help", BUFFER_SIZE);
           } else {
             printf("CLIENT TRIED TO RUN SOMETHING THAT DOESN'T EXIST WHILE NOT LOGGED IN\n");
             write(to_client, "invalid command", BUFFER_SIZE);

@@ -3,7 +3,7 @@
 #ifndef SERVER_FUNCTIONS_H
 #define SERVER_FUNCTIONS_H
 
-void exit_function(int to_client, char buffer[], int size, struct account *account);
+void exit_function(int to_client, char buffer[], struct account *account);
 void help_function(int to_client, int logged_in);
 void balance_function(int to_client, struct account *account);
 
