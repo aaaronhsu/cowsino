@@ -139,6 +139,7 @@ int main() {
             // if command is "help"
             write(to_client, "help", BUFFER_SIZE);
           } else {
+            printf("CLIENT TRIED TO RUN SOMETHING THAT DOESN'T EXIST WHILE LOGGED IN\n");
             write(to_client, "invalid command", BUFFER_SIZE);
           }
         } else {
@@ -192,6 +193,7 @@ int main() {
             // if command is "help"
             write(to_client, "help", BUFFER_SIZE);
           } else {
+            printf("CLIENT TRIED TO RUN SOMETHING THAT DOESN'T EXIST WHILE NOT LOGGED IN\n");
             write(to_client, "invalid command", BUFFER_SIZE);
           }
         }
