@@ -17,13 +17,13 @@ int main() {
       write(to_server, buffer, BUFFER_SIZE);
       // receiving
       read(from_server, buffer, BUFFER_SIZE);
-      printf("received\n");
+      // printf("received\n");
       if (strcmp(buffer, "exit") == 0) {
         printf("Request to exit!\n");
         exit(0);
       }
       printf("Received response: %s\n", buffer);
-      printf("Send string: ");
+      printf("Enter a command: ");
   }
 
   return 0;
