@@ -37,7 +37,6 @@ int main() {
         // parse the buffer (command will be the first element of the buffer)
         
         char * line = buffer;
-        // PROBLEM- entire line only reads before the spaces
         printf("entire line: %s\n", line);
         char ** args = calloc(2, sizeof(char *));
         args[0] = line;
@@ -51,6 +50,7 @@ int main() {
         // if "exit", then exit
         if (strcmp(command, "exit") == 0) {
           printf("THE EXIT FUNCTION IS BEING RUN!!!\n");
+          update_balance(account -> username, account -> balance, file);
           exit_function(to_client, buffer, account);
           break;
         } else if (strcmp(command, "help") == 0) {
@@ -107,6 +107,7 @@ int main() {
 
               int payout = play_flip(bet_amount_int);
               account -> balance += payout;
+              update_balance(account -> username, account -> balance, file);
 
               if (payout >= 0) { 
                 write(to_client, "you guessed the flip correctly, you won your bet!", BUFFER_SIZE);
@@ -145,6 +146,8 @@ int main() {
 
               int payout = play_dice(bet_amount_int, num_dice_int, bet_guess_int);
               account -> balance += payout;
+              update_balance(account -> username, account -> balance, file);
+
 
               if (payout > 0) { 
                 write(to_client, "you guessed the sum correctly- you won 3 times your bet!", BUFFER_SIZE);
@@ -153,7 +156,13 @@ int main() {
               }
 
             } else if (strcmp(game_name, "wheel") == 0) {
-              char *num_spins = strtok(NULL, " ");
+              // game_args is the info
+              if (strchr(game_args, ' ') != NULL) {
+                write(to_client, "play wheel takes in 1 argument- number of spins", BUFFER_SIZE);
+                continue;
+              }
+
+              char *num_spins = game_args;
 
               int num_spins_int = -1;
               sscanf(num_spins, "%d", &num_spins_int);
@@ -168,10 +177,16 @@ int main() {
               int * nums = play_wheel(num_spins_int);
               int payout = nums[num_spins_int - 1];
               account -> balance += payout;
+              update_balance(account -> username, account -> balance, file);
+
 
               // HERE, SOMEHOW WRITE THE ARRAY TO THE CLIENT AND GIVE THEM THE FINAL NUMBER CLEARLY
               
-              write(to_client, "succesfully played spin", BUFFER_SIZE);
+              if (payout > 0) { 
+                write(to_client, "you have won!", BUFFER_SIZE);
+              } else {
+                write(to_client, "oh no! you lost. try again!", BUFFER_SIZE);
+              }
 
             } else {
               write(to_client, "invalid game name", BUFFER_SIZE);

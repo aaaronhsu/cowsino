@@ -20,12 +20,6 @@ long long get_size(char *file_name);
 
 void read_info(char *file_name);
 
-/*
-
-disconnect(username, password, balance, file_with_info)
-- called when the client disconnects or runs exit
-- updates the account entry with the new balance in the file
-
-*/
+void update_balance(char *username, int balance, char *file_name);
 
 #endif

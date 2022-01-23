@@ -30,10 +30,15 @@ int * play_wheel(int num_spins) {
   int spins[num_spins];
   int i;
   for (i = 0; i < num_spins - 1; i++) {
+    // 1 is positive, 0 is negative
+    int sign = rand() % 2;
     int index = rand() % 8;
     spins[i] = nums[index];
+    if (sign == 0) spins[i] = -1 * spins[i];
   }
+  int gain = rand() % 4; // more likely that you win than lose, but less likely for those numbers to be big
   spins[num_spins - 1] = final;
+  if (gain == 0) spins[num_spins - 1] = -1 * spins[num_spins -1];
 
   return spins;
 }

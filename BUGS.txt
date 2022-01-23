@@ -1,9 +1,6 @@
-Bugs that I have found thus far: [we shall talk about then tmrw in class...]
-1. help/balance function returns random strings after the first run
-
 RIGHT NOW:
-1. debug the basic stuff (login, create, 2 easy games)
 2. figure out how the wheel game will work
-3. make the printing in the terminal nicer
-4. alter the exit function so it updates stuff at the end
-5. see bugs 1 (now it works every other time... figure out why)
+
+aaron later:
+1. make the printing in the terminal nicer
+2. remove all the print statements that are perhaps not necessary

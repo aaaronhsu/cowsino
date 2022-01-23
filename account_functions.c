@@ -59,3 +59,32 @@ void read_info(char *file_name) {
     print_account(&(accounts[i]), i);
   }
 }
+
+// currently does not work!!
+void update_balance(char *username, int balance, char *file_name) {
+  printf("updating balance...\n");
+  int file = open(file_name, O_CREAT | O_APPEND | O_RDONLY, 0777);
+
+  long long size = get_size(file_name);
+  if (size == -1) printf("smth went wrong\n");
+  int num_accounts = (size / sizeof(struct account));
+  struct account accounts[num_accounts];
+
+  read(file, accounts, size);
+  for (int i = 0; i < num_accounts; i++) {
+    if (strcmp(accounts[i].username, username) == 0) {
+      printf("found username\n");
+      accounts[i].balance = balance;
+      struct account add = accounts[i];
+      print_account(&add, 3);
+      
+      // THIS HERE DOES NOT WORK IDK WHY
+      lseek(file, i * sizeof(struct account), SEEK_SET);
+      write(file, &add, sizeof(struct account));
+      if (file == -1) {
+        printf("error replacing data in the file\n");
+      }
+      break;
+    }
+  }
+}
