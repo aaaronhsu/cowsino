@@ -41,7 +41,7 @@ int main() {
         printf("entire line: %s\n", line);
         char ** args = calloc(2, sizeof(char *));
         args[0] = line;
-        if (strsep(&line, "") != NULL) args[1] = line;
+        if (strsep(&line, " ") != NULL) args[1] = line;
  
         char *command = args[0];
         char *stuff_after = args[1];
