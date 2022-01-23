@@ -29,8 +29,8 @@ void help_function(int to_client, int logged_in) {
 
 void balance_function(int to_client, struct account *account) {
       
-    char buffer[BUFFER_SIZE];
+    char buffer[100];
     sprintf(buffer, "Your balance is: %d\n", account -> balance);
-    write(to_client, buffer, BUFFER_SIZE);
+    write(to_client, buffer, 100);
     printf("sent balance to client\n", buffer);
 }
