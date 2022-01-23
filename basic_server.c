@@ -51,7 +51,7 @@ int main() {
         // if "exit", then exit
         if (strcmp(command, "exit") == 0) {
           printf("THE EXIT FUNCTION IS BEING RUN!!!\n");
-          update_balance(account -> username, account -> balance, file);
+          update_balance2(account -> username, account -> balance, file);
           exit_function(to_client, buffer, account);
           break;
         } else if (strcmp(command, "help") == 0) {
@@ -108,7 +108,7 @@ int main() {
 
               int payout = play_flip(bet_amount_int);
               account -> balance += payout;
-              update_balance(account -> username, account -> balance, file);
+              update_balance2(account -> username, account -> balance, file);
 
               if (payout >= 0) { 
                 write(to_client, "You guessed the flip correctly and won your bet!\n", BUFFER_SIZE);
@@ -147,7 +147,7 @@ int main() {
 
               int payout = play_dice(bet_amount_int, num_dice_int, bet_guess_int);
               account -> balance += payout;
-              update_balance(account -> username, account -> balance, file);
+              update_balance2(account -> username, account -> balance, file);
 
 
               if (payout > 0) { 
@@ -178,7 +178,7 @@ int main() {
               int * nums = play_wheel(num_spins_int);
               int payout = nums[num_spins_int - 1];
               account -> balance += payout;
-              update_balance(account -> username, account -> balance, file);
+              update_balance2(account -> username, account -> balance, file);
 
 
               // HERE, SOMEHOW WRITE THE ARRAY TO THE CLIENT AND GIVE THEM THE FINAL NUMBER CLEARLY
