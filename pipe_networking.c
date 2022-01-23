@@ -20,13 +20,13 @@ int server_connect(int *from_client) {
   // writes the acknowledgement of receiving secret pipe to client
   int to_client = open(secret_pipe, O_WRONLY);
   write(to_client, ACK, HANDSHAKE_BUFFER_SIZE);
-  printf("4. server wrote ack to client\n");
+  // printf("4. server wrote ack to client\n");
 
   // final getting of ack
   char ack[HANDSHAKE_BUFFER_SIZE];
   read(*from_client, ack, HANDSHAKE_BUFFER_SIZE);
   if (!strcmp(ack, ACK)) {
-    printf("8. successful 3 way handshake!\n");
+    printf("server has started!\n");
   }
 
   return to_client;
