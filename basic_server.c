@@ -236,8 +236,8 @@ int main() {
                 strncpy(account -> password, search -> password, sizeof(account -> password));
                 account -> balance = search -> balance;
 
-                char * welcome_message = calloc(BUFFER_SIZE);
-                sprintf(welcome_message, "Welcome back, %s! You have %s moonies.\n", account -> username, account -> balance);
+                char * welcome_message = malloc(BUFFER_SIZE);
+                sprintf(welcome_message, "Welcome back, %s! You have %d moonies.\n", account -> username, account -> balance);
 
                 write(to_client, welcome_message, BUFFER_SIZE);
               }
