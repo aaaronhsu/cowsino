@@ -28,7 +28,7 @@ void add_account(char *username, char *password, char *file_name) {
   struct account *add = malloc(sizeof(struct account));
   strncpy(add -> username, username, sizeof(add -> username));
   strncpy(add -> password, password, sizeof(add -> password));;
-  add -> balance = 0;
+  add -> balance = 100;
   int file = open(file_name, O_WRONLY | O_CREAT | O_APPEND, 0777);
   write(file, add, sizeof(struct account));
 }

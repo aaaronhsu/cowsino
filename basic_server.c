@@ -66,16 +66,38 @@ int main() {
             balance_function(to_client, account);
 
           } else if (strcmp(command, "play") == 0) {
-            char *game_name = strtok(NULL, " ");
+            char ** game_holder = calloc(2, sizeof(char *));
+            game_holder[0] = stuff_after;
+            if (strsep(&stuff_after, " ") != NULL) game_holder[1] = stuff_after;
+
+            char *game_name = game_holder[0];
+            char *game_args = game_holder[1];
+
+            if (game_args == NULL) {
+              write(to_client, "play flip requires 1 arguments, play dice requires 3 arguments, and play wheel requires 1 argument", BUFFER_SIZE);
+              continue;
+            }
 
             if (strcmp(game_name, "flip") == 0) {
-              char *bet_amount = strtok(NULL, " ");
-              char *bet_guess = strtok(NULL, " ");
+              char ** bet_info = calloc(2, sizeof(char *));
+              bet_info[0] = game_args;
+              if (strsep(&game_args, " ") != NULL) bet_info[1] = game_args;
+              
+              char *bet_amount = bet_info[0];
+              char *bet_guess = bet_info[1];
+              printf("bet amount: %s\n", bet_amount);
+
+              if (bet_guess == NULL || strchr(bet_guess, ' ') != NULL) {
+                write(to_client, "play flip takes in 2 arguments- bet amount and bet guess", BUFFER_SIZE);
+                continue;
+              }
 
               int bet_amount_int = -1;
+
+              // doesn't use bet guess, it's just to make it immersive
               int bet_guess_int = -1;
               sscanf(bet_amount, "%d", &bet_amount_int);
-              sscanf(bet_guess, "%d", &bet_guess_int);
+              printf("bet amount int: %d\n", bet_amount_int);
 
               // check if the bet amount is an integer
               if (bet_amount_int <= 0 || bet_amount_int > account -> balance) {
@@ -86,12 +108,26 @@ int main() {
               int payout = play_flip(bet_amount_int);
               account -> balance += payout;
 
-              write(to_client, "succesfully played flip", BUFFER_SIZE);
+              if (payout >= 0) { 
+                write(to_client, "you guessed the flip correctly, you won your bet!", BUFFER_SIZE);
+              } else {
+                write(to_client, "oh no! you lost your bet. try again!", BUFFER_SIZE);
+              }
 
             } else if (strcmp(game_name, "dice") == 0) {
-              char *bet_amount = strtok(NULL, " ");
-              char *num_dice = strtok(NULL, " ");
-              char *bet_guess = strtok(NULL, " ");
+              char ** bet_info = calloc(3, sizeof(char *));
+              bet_info[0] = game_args;
+              if (strsep(&game_args, " ") != NULL) bet_info[1] = game_args;
+              if (strsep(&game_args, " ") != NULL) bet_info[2] = game_args;
+
+              if (bet_info[1] == NULL || bet_info[1] == NULL || strchr(bet_info[2], ' ') != NULL) {
+                write(to_client, "play dice takes in 3 arguments- bet amount, number of dice, and bet guess", BUFFER_SIZE);
+                continue;
+              }
+
+              char *bet_amount = bet_info[0];
+              char *num_dice = bet_info[1];
+              char *bet_guess = bet_info[2];
 
               int bet_amount_int = -1;
               int num_dice_int = -1;
@@ -110,7 +146,11 @@ int main() {
               int payout = play_dice(bet_amount_int, num_dice_int, bet_guess_int);
               account -> balance += payout;
 
-              write(to_client, "succesfully played dice", BUFFER_SIZE);
+              if (payout > 0) { 
+                write(to_client, "you guessed the sum correctly- you won 3 times your bet!", BUFFER_SIZE);
+              } else {
+                write(to_client, "oh no! you lost your bet. try again!", BUFFER_SIZE);
+              }
 
             } else if (strcmp(game_name, "wheel") == 0) {
               char *num_spins = strtok(NULL, " ");
