@@ -160,11 +160,11 @@ int main() {
             char *password = args[1];
 
             char *temp_check = args[1];
-            // check if temp_check is
-              // 1. null -> too few arguments
-              // 2. has a space -> too many arguments
-
-            
+            if (temp_check == NULL || strchr(temp_check, ' ') != NULL) {
+              printf("wrong number of login arguments\n");
+              write(to_client, "login takes in 2 arguments- username and password", BUFFER_SIZE);
+              continue;
+            }
 
             printf("%s %s\n", username, password);
 
@@ -189,9 +189,24 @@ int main() {
           } else if (strcmp(command, "create") == 0) {
             // if command is "create"
             printf("THE CLIENT IS TRYING TO CREATE AN ACCOUNT!!!\n");
-            char *username = strtok(NULL, " ");
-            char *password = strtok(NULL, " ");
 
+            printf("create account info: %s\n", stuff_after);
+            char ** user_pass = calloc(2, sizeof(char *));
+            args[0] = stuff_after;
+            if (strsep(&stuff_after, " ") != NULL) args[1] = stuff_after;
+
+            char *username = args[0];
+            char *password = args[1];
+
+            char *temp_check = args[1];
+            if (temp_check == NULL || strchr(temp_check, ' ') != NULL) {
+              printf("wrong number of create account arguments\n");
+              write(to_client, "create account takes in 2 arguments- username and password", BUFFER_SIZE);
+              continue;
+            }
+
+            printf("%s %s\n", username, password);
+            
             struct account *search = check_existance(username, file);
 
             // check if the user exists
