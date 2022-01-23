@@ -218,7 +218,7 @@ int main() {
             char *temp_check = args[1];
             if (temp_check == NULL || strchr(temp_check, ' ') != NULL) {
               printf("wrong number of login arguments\n");
-              write(to_client, "login takes in 2 arguments- username and password", BUFFER_SIZE);
+              write(to_client, "\nUSAGE:\nlogin <username> <password>\n", BUFFER_SIZE);
               continue;
             }
 
