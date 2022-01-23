@@ -27,3 +27,8 @@ games.o: games.c games.h global.h
 clean:
 	rm *.o
 	rm *~
+
+p:
+	git add .
+	git commit -m"update to run on school computer"
+	git push
