@@ -56,6 +56,7 @@ int main() {
         } else if (strcmp(command, "help") == 0) {
           printf("THE HELP FUNCTION IS BEING RUN!!!\n");
           help_function(to_client, logged_in);
+          continue;
         }
 
         // check if the user is logged in
