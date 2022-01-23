@@ -14,7 +14,7 @@ int play_dice(int money, int num_dice, int sum_guess) {
   for (int i = 0; i < num_dice; i++) {
     sum += rand() % 6 + 1;
   }
-  return (sum == sum_guess) ? money : - 3 * money;
+  return (sum == sum_guess) ? 3 * money : - money;
 }
 
 int * play_wheel(int num_spins) {
