@@ -9,7 +9,7 @@ void exit_function(int to_client, char buffer[], int size, struct account *accou
 
 
     write(to_client, buffer, size);
-    printf("sent %s to client\n", buffer);
+    printf("sent %s to client\n");
 }
 
 void help_function(int to_client, int logged_in) {
@@ -24,7 +24,7 @@ void help_function(int to_client, int logged_in) {
       buffer = "Commands:\nlogin <username> <password>\ncreate <username> <password>\nexit\n";
     }
     write(to_client, buffer, size_of(buffer));
-    printf("sent help to client\n", buffer);
+    printf("sent help to client\n");
 }
 
 void balance_function(int to_client, struct account *account) {
@@ -32,5 +32,5 @@ void balance_function(int to_client, struct account *account) {
     char buffer[100];
     sprintf(buffer, "Your balance is: %d\n", account -> balance);
     write(to_client, buffer, 100);
-    printf("sent balance to client\n", buffer);
+    printf("sent balance to client\n");
 }
