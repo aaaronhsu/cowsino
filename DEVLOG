@@ -32,7 +32,7 @@ Eliza: Coded wheel game
 
 1/22
 Aaron: Coded help/balance function and fixed issue where help would only run once
-Eliza: Flip/dice game now updates balance in accounts.txt after each game
+Eliza: Got login, create, flip, dice and wheel string parsing to work and wrote update balance function in account_functions.
 
 1/23
 Aaron: 
