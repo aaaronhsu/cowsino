@@ -15,7 +15,7 @@ void exit_function(int to_client, char buffer[], struct account *account) {
 
 void help_function(int to_client, int logged_in) {
 
-    char * buffer = malloc(256);
+    char * buffer = malloc(BUFFER_SIZE);
 
     if (logged_in == 1) {
       // the user is logged in, show game commands
@@ -30,7 +30,7 @@ void help_function(int to_client, int logged_in) {
 
 void balance_function(int to_client, struct account *account) {
       
-    char * buffer = malloc(100);
+    char * buffer = malloc(BUFFER_SIZE);
     sprintf(buffer, "Your balance is: %d\n", account -> balance);
     write(to_client, buffer, BUFFER_SIZE);
     printf("sent balance to client\n");

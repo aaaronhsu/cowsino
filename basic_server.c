@@ -158,11 +158,12 @@ int main() {
             char *username = args[0];
             char *password = args[1];
 
-            // check if there r more than 3 args
-            if (strsep(&password, " ") != NULL) {
-              printf("too many commands for the login function \n");
-              write(to_client, "the login function takes in only 2 arguments- username and password", BUFFER_SIZE);
-            }
+            char *temp_check = args[1];
+            // check if temp_check is
+              // 1. null -> too few arguments
+              // 2. has a space -> too many arguments
+
+            
 
             printf("%s %s\n", username, password);
 
