@@ -18,11 +18,11 @@ int main() {
       // receiving
       read(from_server, buffer, BUFFER_SIZE);
       // printf("received\n");
-      // if (strcmp(buffer, "exit") == 0) {
-      //   printf("Request to exit!\n");
-      //   exit(0);
-      // }
+      if (strcmp(buffer, "exit") == 0) {
+        exit(0);
+      }
       printf("\n%s\n", buffer);
+
       printf("Enter a command: ");
   }
 
