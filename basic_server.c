@@ -110,13 +110,10 @@ int main() {
               account -> balance += payout;
               update_balance2(account -> username, account -> balance, file);
 
-              char * outcome_message = "";
-              if (payout > 0) {
-                sprintf("You guessed the flip correctly and won %d!\n", bet_guess_int);
-                write(to_client, outcome_message, BUFFER_SIZE);
+              if (payout >= 0) { 
+                write(to_client, "You guessed the flip correctly and won your bet!\n", BUFFER_SIZE);
               } else {
-                sprintf("You guessed the flip incorrectly and lost %d.\n", bet_guess_int);
-                write(to_client, outcome_message, BUFFER_SIZE);
+                write(to_client, "Oh no! You lost your bet... Try again!\n", BUFFER_SIZE);
               }
 
             } else if (strcmp(game_name, "dice") == 0) {
@@ -153,13 +150,11 @@ int main() {
               update_balance2(account -> username, account -> balance, file);
 
 
-              char * outcome_message = "";
+            
               if (payout > 0) {
-                sprintf("You guessed the sum of the dice correctly and won %d!\n", bet_guess_int * 3);
-                write(to_client, outcome_message, BUFFER_SIZE);
+                write(to_client, "You guessed the sum correctly and won 3 times your bet!\n", BUFFER_SIZE);
               } else {
-                sprintf("You guessed the sum of the dice incorrectly and lost %d.\n", bet_guess_int);
-                write(to_client, outcome_message, BUFFER_SIZE);
+                write(to_client, "Oh no! You lost your bet... Try again!\n", BUFFER_SIZE);
               }
 
             } else if (strcmp(game_name, "wheel") == 0) {
