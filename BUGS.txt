@@ -4,3 +4,6 @@ RIGHT NOW:
 aaron later:
 1. make the printing in the terminal nicer
 2. remove all the print statements that are perhaps not necessary
+
+TO FIX!!
+3. do the update function in account_functions
