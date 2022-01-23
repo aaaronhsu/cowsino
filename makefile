@@ -15,7 +15,7 @@ basic_server.o: basic_server.c pipe_networking.h server_functions.h account_func
 pipe_networking.o: pipe_networking.c pipe_networking.h global.h
 	gcc -c pipe_networking.c
 
-server_functions.o: server_functions.c server_functions.h global.h account_functions.h
+server_functions.o: server_functions.c server_functions.h global.h account_functions.h pipe_networking.h
 	gcc -c server_functions.c
 
 account_functions.o: account_functions.c account_functions.h global.h

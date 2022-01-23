@@ -1,11 +1,9 @@
 Bugs that I have found thus far: [we shall talk about then tmrw in class...]
-1. on the first thing the client sends to the server, it just sends back the string, not "invalid commnad"
-2. no idea where it's sending stuff back to the server
-3. help/balance function returns random strings after the first run
+1. help/balance function returns random strings after the first run
 
-ALSO NOTE:
-- next thing for me (eliza) to do is to set up the sending of the wheel info 
-functionality to the client
-
-TO DO (aaron probably bc I need to debug the code which requires running):
-- implement the help and balance functions
+RIGHT NOW:
+1. debug the basic stuff (login, create, 2 easy games)
+2. figure out how the wheel game will work
+3. make the printing in the terminal nicer
+4. alter the exit function so it updates stuff at the end
+5. see bugs 1
