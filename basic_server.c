@@ -197,7 +197,7 @@ int main() {
             write(to_client, "help", BUFFER_SIZE);
           } else {
             printf("CLIENT TRIED TO RUN SOMETHING THAT DOESN'T EXIST WHILE LOGGED IN\n");
-            write(to_client, "invalid command\n", BUFFER_SIZE);
+            write(to_client, "USAGE:\nplay flip <amount> <heads/tails>\nplay dice <amount> <number of dice> <sum guess>\nplay wheel <amount spun>\n", BUFFER_SIZE);
           }
         } else {
           // IF NOT LOGGED IN:
