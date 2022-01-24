@@ -36,4 +36,4 @@ Eliza: Got login, create, flip, dice and wheel string parsing to work and wrote 
 
 1/23
 Aaron: Fixed balance updating and added changed messages to client
-Eliza: Added friendlier error messages for invalid input
+Eliza: Added friendlier error messages for invalid input, went over project to fix typos and ensure functionality.
