@@ -181,11 +181,8 @@ int main() {
               account -> balance += payout;
               update_balance2(account -> username, account -> balance, file);
 
-
-              // HERE, SOMEHOW WRITE THE ARRAY TO THE CLIENT AND GIVE THEM THE FINAL NUMBER CLEARLY
-              
               if (payout > 0) { 
-                write(to_client, "You have won!\n", BUFFER_SIZE);
+                write(to_client, "You have won! Check your updated balance! \n", BUFFER_SIZE);
               } else {
                 write(to_client, "Oh no! You lost. Try again!\n", BUFFER_SIZE);
               }
