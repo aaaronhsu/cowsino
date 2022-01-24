@@ -215,7 +215,7 @@ int main() {
 
             char *username = args[0];
             char *password = args[1];
-
+ 
             char *temp_check = args[1];
             if (temp_check == NULL || strchr(temp_check, ' ') != NULL) {
               printf("wrong number of login arguments\n");
@@ -288,7 +288,7 @@ int main() {
       exit(0);
     }
 
-    printf("new client has connecteda and waiting for new connections\n");
+    printf("new client has connected and waiting for new connections\n");
   }
   return 0;
 }

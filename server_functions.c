@@ -19,7 +19,7 @@ void help_function(int to_client, int logged_in) {
 
     if (logged_in == 1) {
       // the user is logged in, show game commands
-      buffer = "Commands:\nplay flip <bet amount> <bet guess>\nplay dice <bet amount> <num dice> <bet guess>\nbalance\nexit\n";
+      buffer = "Commands:\nplay flip <bet amount> <bet guess>\nplay dice <bet amount> <num dice> <bet guess>\nplay wheel <amount spun>\nbalance\nexit\n";
     } else {
       // the user is not logged in, show login commands
       buffer = "Commands:\nlogin <username> <password>\ncreate <username> <password>\nexit\n";
