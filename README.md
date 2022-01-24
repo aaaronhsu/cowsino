@@ -17,7 +17,7 @@ On client connect, the user will be prompted to either log in or create an accou
 - `balance`: Displays the current balance of the user.
 - `play flip <amount> <heads/tails>`: Plays a coinflip game, betting the given amount of moonies on the given side of the coin.
 - `play dice <amount> <number of dice> <sum guess>`: Plays a dice game, betting the given amount of moonies on the sum of the dice. The closer the user's guess is to actual sum, the higher the payout.
-- `play wheel <amount spun>`: Plays a wheel game where it spins <amount spun> number of times and you gain the amount of money that it lands on (if the amount is negative, you lose money). In the terminal as the wheel spins, it will display the numbers that it passes by before getting to the final number.
+- `play wheel <amount spun>`: Plays a wheel game where it spins <amount spun> number of times and you gain the amount of money that it lands on (if the amount is negative, you lose money). Returns to user whether they won or lost and reminds them to check updated balance.
 - `exit`: Exits the program.
 - `help`: Displays a list of commands that can be run.
 
